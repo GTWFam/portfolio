@@ -1,13 +1,14 @@
-
 import React from "react";
 import Info from "./Info";
+import "bulma/css/bulma.min.css";
 
 class App extends React.Component {
   render() {
-    const { name } = this.props;
     return (
       <>
-        <Info />
+        <section className="sections">
+          <Info />
+        </section>
       </>
     );
   }
