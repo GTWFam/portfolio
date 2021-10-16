@@ -1,3 +1,7 @@
-section.sections {
+section.section {
   padding-top: 50px;
+}
+
+.bg-grey {
+  background-color: #d4d3e3;
 }

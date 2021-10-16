@@ -26,7 +26,7 @@ class Info extends React.Component {
               </figure>
             </div>
             <div className="column">
-              <h1 className="title is-size-1">
+              <h1 className="title is-size-1 has-text-black">
                 Hi there, I am{" "}
                 <ReactTypingEffect
                   text={["Bill", "Hoang"]}
@@ -46,41 +46,49 @@ class Info extends React.Component {
                 <div className="column">
                   <a
                     href="https://github.com/GTWFam"
-                    className="button is-rounded is-white"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faGithub} size="2x" />
+                    <FontAwesomeIcon color="black" icon={faGithub} size="3x" />
                   </a>
                 </div>
                 <div className="column">
                   <a
                     href="https://www.linkedin.com/in/gtwfam/"
-                    className="button is-rounded is-white"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                    <FontAwesomeIcon
+                      color="black"
+                      icon={faLinkedin}
+                      size="3x"
+                    />
                   </a>
                 </div>
                 <div className="column">
                   <a
                     href="https://www.instagram.com/gtwfam/"
-                    className="button is-rounded is-white"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faInstagram} size="2x" />
+                    <FontAwesomeIcon
+                      color="black"
+                      icon={faInstagram}
+                      size="3x"
+                    />
                   </a>
                 </div>
                 <div className="column">
                   <a
                     href="https://www.facebook.com/hoang.phamphan/"
-                    className="button is-rounded is-white"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faFacebook} size="2x" />
+                    <FontAwesomeIcon
+                      color="black"
+                      icon={faFacebook}
+                      size="3x"
+                    />
                   </a>
                 </div>
                 <div className="column is-half"></div>

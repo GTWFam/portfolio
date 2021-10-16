@@ -6,7 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <section className="sections">
+        <section className="section bg-grey">
           <Info />
         </section>
       </>
