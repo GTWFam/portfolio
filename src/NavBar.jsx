@@ -21,7 +21,7 @@ class NavBar extends React.Component {
                 <Link
                   smooth
                   to="#about"
-                  className="button is-info is-light is-large"
+                  className="button is-info is-light is-medium"
                 >
                   About
                 </Link>
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
                 <Link
                   smooth
                   to="#nav"
-                  className="button is-info is-light is-large"
+                  className="button is-info is-light is-medium"
                 >
                   Navigation
                 </Link>
@@ -43,7 +43,7 @@ class NavBar extends React.Component {
                 <Link
                   smooth
                   to="#tetrisGame"
-                  className="button is-info is-light is-large"
+                  className="button is-info is-light is-medium"
                 >
                   Tetris
                 </Link>

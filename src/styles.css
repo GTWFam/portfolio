@@ -1,6 +1,12 @@
-/* section.section {
-  padding-top: 50px;
-} */
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.bg-white {
+  background-color: #fff;
+}
 
 .bg-grey {
   background-color: #d4d3e3;
