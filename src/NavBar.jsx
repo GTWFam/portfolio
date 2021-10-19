@@ -42,7 +42,7 @@ class NavBar extends React.Component {
               <MemoryRouter>
                 <Link
                   smooth
-                  to="#tetris"
+                  to="#tetrisGame"
                   className="button is-info is-light is-large"
                 >
                   Tetris
