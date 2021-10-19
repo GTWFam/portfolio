@@ -14,7 +14,6 @@ const colors = [
 export function loadTetris() {
 
     const canvas = document.getElementById("tetris");
-    console.log(canvas)
     const context = canvas.getContext('2d');
 
     context.scale(20, 20);
