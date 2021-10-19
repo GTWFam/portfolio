@@ -16,6 +16,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
+    "dotenv": "^10.0.0",
     "bulma": "^0.9.3",
     "express": "^4.17.1",
     "nodemon": "^2.0.13",
