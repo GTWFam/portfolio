@@ -1,11 +1,30 @@
 const spawn = require('child_process').spawn;
 const express = require('express');
 
-const othello = spawn('python', ['./hello.py'])
+let othelloBoard = [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 2, 1, 0, 0, 0],
+    [0, 0, 0, 1, 2, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0]
+]
 
-othello.stdout.on('data', data => {
-    console.log(data.toString())
-})
+let player = '1'
+
+function getAIMove() {
+    const othello = spawn('python', ['othelloAI.py', othelloBoard.toString(), player])
+
+    othello.stdout.on('data', data => {
+        console.log(data.toString())
+    })
+
+    othello.stderr.on('data', data => {
+        console.error(`Encountered an error in python code:\n${data}`)
+    })
+}
 
 const app = express();
 
