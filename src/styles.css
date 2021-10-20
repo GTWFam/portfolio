@@ -1,7 +1,8 @@
-.sticky {
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.anchor {
+  display: block;
+  height: 70px;
+  margin-top: -70px;
+  visibility: hidden;
 }
 
 .bg-white {
@@ -14,4 +15,8 @@
 
 .bg-tetris {
   background-color: #26bbec;
+}
+
+.bg-othello {
+  background-color: #3c8344;
 }

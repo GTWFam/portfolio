@@ -14,12 +14,14 @@ class Tetris extends React.Component {
             Tetris Project
           </h2>
           <div className="columns">
-            <div className="column is-half is-flex is-justify-content-center">
+            <div className="column is-half is-flex is-justify-content-end">
               <canvas id="tetris" width="300" height="500"></canvas>
             </div>
             <div className="column is-half is-flex is-justify-content-start">
               <p className="is-size-4 has-text-black">
-                <span id="currentPlayer"></span> <span id="currentScore"></span>
+                <span id="currentPlayer"></span>
+                <span className="mx-6"></span>
+                <span id="currentScore"></span>
               </p>
             </div>
           </div>

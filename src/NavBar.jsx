@@ -31,10 +31,10 @@ class NavBar extends React.Component {
               <MemoryRouter>
                 <Link
                   smooth
-                  to="#nav"
+                  to="#tetrisGame"
                   className="button is-info is-light is-medium"
                 >
-                  Navigation
+                  Tetris
                 </Link>
               </MemoryRouter>
             </div>
@@ -42,10 +42,10 @@ class NavBar extends React.Component {
               <MemoryRouter>
                 <Link
                   smooth
-                  to="#tetrisGame"
+                  to="#othelloGame"
                   className="button is-info is-light is-medium"
                 >
-                  Tetris
+                  Othello
                 </Link>
               </MemoryRouter>
             </div>
@@ -54,44 +54,6 @@ class NavBar extends React.Component {
       </>
     );
   }
-
-  //   render() {
-  //     return (
-  //       <>
-  //         <div className="navbar container is-flex is-justify-content-center is-align-content-center">
-  //           <div className="columns">
-  //             <div className="column">
-  //               <a
-  //                 href="#about"
-  //                 className="button is-info is-light is-large"
-  //                 onClick={this.nothing}
-  //               >
-  //                 About
-  //               </a>
-  //             </div>
-  //             <div className="column">
-  //               <a
-  //                 href="#nav"
-  //                 className="button is-info is-light is-large"
-  //                 onClick={this.nothing}
-  //               >
-  //                 Navigation
-  //               </a>
-  //             </div>
-  //             <div className="column">
-  //               <a
-  //                 href="#tetris"
-  //                 className="button is-info is-light is-large"
-  //                 onClick={this.nothing}
-  //               >
-  //                 Tetris
-  //               </a>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </>
-  //     );
-  //   }
 }
 
 export default NavBar;
