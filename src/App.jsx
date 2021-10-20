@@ -1,10 +1,10 @@
 import "bulma/css/bulma.min.css";
 import React from "react";
 
-import Info from "./Info";
-import Tetris from "./Tetris";
-import NavBar from "./NavBar";
-import Othello from "./Othello";
+import Info from "./components/Info";
+import Tetris from "./components/Tetris";
+import NavBar from "./components/NavBar";
+import Othello from "./components/Othello";
 
 class App extends React.Component {
   render() {

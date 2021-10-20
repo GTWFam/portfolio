@@ -1,5 +1,5 @@
 import React from "react";
-import { loadTetris } from "./tetrisGame.js";
+import { loadTetris } from "../assets/scripts/tetrisGame";
 
 class Tetris extends React.Component {
   componentDidMount() {

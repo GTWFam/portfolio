@@ -1,5 +1,5 @@
 import React from "react";
-import { loadOthello } from "./othelloGame.js";
+import { loadOthello } from "../assets/scripts/othelloGame";
 
 class Othello extends React.Component {
   componentDidMount() {
