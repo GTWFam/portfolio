@@ -46,11 +46,48 @@ client.connect()
     })
     .then(__collection => {
         collection = __collection;
-        return collection.find({ "_id": ObjectId("617094d2a4cbd1e6a0ae18ae") }).toArray()
-    }).then(console.log)
+        return ""
+    })
+// .then(console.log)
 
 
 app.use(express.static('build'));
+
+app.get('/getTetrisRecords', async (req, res) => {
+    if (collection == null) {
+        return res.send('No connection to database!')
+    }
+    try {
+        let tetrisData = await collection.find({ "data": "tetris" }).toArray()
+        let records = tetrisData[0].records
+        console.log(records)
+        res.json(records)
+        res.end()
+    } catch (e) {
+        console.log('Unable to retrieve Tetris records: ' + e.message)
+    }
+
+})
+
+app.post('/addTetrisRecord', async (req, res) => {
+    if (collection == null) {
+        return res.send('No connection to database!')
+    }
+    let tetrisData = await collection.find({ "data": "tetris" }).toArray()
+    let records = tetrisData[0].records
+    records.push({ name: req.body.name, score: req.body.score })
+
+    try {
+        collection.updateOne(
+            { "data": "tetris" },
+            { $set: { "records": records } }
+        )
+        res.send('Successfully added tetris record!')
+    } catch (e) {
+        res.send('Failed to add the tetris record' + e.message)
+        return
+    }
+})
 
 app.post('/makeMove', (req, res) => {
     res.send(`Made Move! AI: ${getAIMove()}`)

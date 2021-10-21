@@ -14,14 +14,14 @@ class NavBar extends React.Component {
   render() {
     return (
       <>
-        <div className="navbar container is-flex is-justify-content-center is-align-content-center">
+        <div className="container is-flex is-justify-content-center is-align-content-center">
           <div className="columns">
             <div className="column">
               <MemoryRouter>
                 <Link
                   smooth
                   to="#about"
-                  className="button is-info is-light is-medium"
+                  className="button is-info is-light is-large"
                 >
                   About
                 </Link>
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
                 <Link
                   smooth
                   to="#tetrisGame"
-                  className="button is-info is-light is-medium"
+                  className="button is-info is-light is-large"
                 >
                   Tetris
                 </Link>
@@ -43,7 +43,7 @@ class NavBar extends React.Component {
                 <Link
                   smooth
                   to="#othelloGame"
-                  className="button is-info is-light is-medium"
+                  className="button is-info is-light is-large"
                 >
                   Othello
                 </Link>

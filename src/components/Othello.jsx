@@ -9,7 +9,7 @@ class Othello extends React.Component {
     return (
       <>
         <div className="container has-text-centered">
-          <h2 className="is-subtitle is-size-2 has-text-black has-text-weight-semibold">
+          <h2 className="pb-4 is-size-2 has-text-black has-text-weight-semibold">
             Othello Project
           </h2>
           <div className="columns">

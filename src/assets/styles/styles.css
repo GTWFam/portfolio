@@ -5,18 +5,27 @@
   visibility: hidden;
 }
 
-.bg-white {
-  background-color: #fff;
+.h-10 {
+  height: 10%;
 }
 
-.bg-grey {
-  background-color: #d4d3e3;
+.tetris-container {
+  position: relative;
+  width: 300px;
+  height: 500px;
 }
 
-.bg-tetris {
-  background-color: #26bbec;
+#playerForm,
+#tetris,
+#tetrisPaused {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.bg-othello {
-  background-color: #3c8344;
+.scoreboard span.text {
+  display: inline-block;
+  width: 200px;
 }

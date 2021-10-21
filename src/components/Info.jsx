@@ -18,7 +18,7 @@ class Info extends React.Component {
               <figure className="image">
                 <img
                   className="is-rounded"
-                  src="./assets/Profile.jpg"
+                  src="../assets/images/Profile.jpg"
                   width="300"
                   height="300"
                   style={{ width: "unset" }}

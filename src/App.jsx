@@ -11,18 +11,18 @@ class App extends React.Component {
     return (
       <>
         <span class="anchor" id="about"></span>
-        <section className="section bg-grey">
+        <section className="section has-background-white-ter">
           <Info />
         </section>
-        <section className="section bg-white p-3" id="nav">
+        <section className="section has-background-info p-6" id="nav">
           <NavBar />
         </section>
         <span class="anchor" id="tetrisGame"></span>
-        <section className="section bg-tetris">
+        <section className="section has-background-info-dark">
           <Tetris />
         </section>
         <span class="anchor" id="othelloGame"></span>
-        <section className="section bg-othello">
+        <section className="section has-background-primary-dark">
           <Othello />
         </section>
       </>
