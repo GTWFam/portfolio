@@ -73,20 +73,20 @@ app.post('/addTetrisRecord', async (req, res) => {
     if (collection == null) {
         return res.send('No connection to database!')
     }
+
     let tetrisData = await collection.find({ "data": "tetris" }).toArray()
     let records = tetrisData[0].records
-    records.push({ name: req.body.name, score: req.body.score })
-
+    records.push({ name: req.query.name, score: req.query.score })
     try {
         collection.updateOne(
             { "data": "tetris" },
             { $set: { "records": records } }
         )
-        res.send('Successfully added tetris record!')
+        res.json({ message: 'Successfully added tetris record!' })
     } catch (e) {
-        res.send('Failed to add the tetris record' + e.message)
-        return
+        res.json({ message: 'Failed to add the tetris record' + e.message })
     }
+    res.end()
 })
 
 app.post('/makeMove', (req, res) => {

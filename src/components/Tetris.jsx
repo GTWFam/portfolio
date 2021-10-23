@@ -86,23 +86,26 @@ class Tetris extends React.Component {
                 <span className="text has-text-right" id="currentScore"></span>
               </p>
               <hr />
-              <p className="is-size-4 has-text-white">
-                {records ? (
-                  records.map((record) => {
-                    return (
-                      <>
+              <p className="is-size-4 has-text-white has-text-center">
+                Scoreboard
+              </p>
+              {records ? (
+                records.map((record) => {
+                  return (
+                    <>
+                      <p className="is-size-4 has-text-white">
                         <span className="text">{record.name}</span>
                         <span className="mx-6"></span>
                         <span className="text has-text-right">
                           {record.score}
                         </span>
-                      </>
-                    );
-                  })
-                ) : (
-                  <span>Loading...</span>
-                )}
-              </p>
+                      </p>
+                    </>
+                  );
+                })
+              ) : (
+                <span>Loading...</span>
+              )}
             </div>
           </div>
         </div>

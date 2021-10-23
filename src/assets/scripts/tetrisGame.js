@@ -1,3 +1,5 @@
+import Tetris from "../../components/Tetris";
+
 let paused = true;
 let pausedDisabled = true;
 
@@ -191,6 +193,29 @@ function shapeCollide(arena, player) {
     return false;
 }
 
+function submitScore() {
+    console.log("Submitting!");
+    let data = { name: player.name, score: player.score };
+    console.log(data)
+
+    fetch(`/addTetrisRecord?name=${player.name}&score=${player.score}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+    return false
+}
+
 function playerReset() {
     const shapeIndex = allShapes.length * Math.random() | 0;
     player.currentShape = createShape(allShapes[shapeIndex]);
@@ -204,7 +229,7 @@ function playerReset() {
         draw();
         paused = true;
         pausedDisabled = true;
-        submit();
+        submitScore();
         arena.forEach(row => row.fill(0));
         player.name = 'Current Player';
         player.score = 0;
