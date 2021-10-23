@@ -75,17 +75,17 @@ class Tetris extends React.Component {
             </div>
             <div className="column is-half has-text-left scoreboard">
               <p className="is-size-4 has-text-white">
-                <span className="text">Player Name</span>
+                <span className="text">Name</span>
                 <span className="mx-6"></span>
-                <span className="text">Player Score</span>
+                <span className="text has-text-right">Score</span>
               </p>
-              <hr className="is-success" />
+              <hr />
               <p className="is-size-4 has-text-white">
                 <span className="text" id="currentPlayer"></span>
                 <span className="mx-6"></span>
-                <span className="text" id="currentScore"></span>
+                <span className="text has-text-right" id="currentScore"></span>
               </p>
-              <hr className="is-success" />
+              <hr />
               <p className="is-size-4 has-text-white">
                 {records ? (
                   records.map((record) => {
@@ -93,7 +93,9 @@ class Tetris extends React.Component {
                       <>
                         <span className="text">{record.name}</span>
                         <span className="mx-6"></span>
-                        <span className="text">{record.score}</span>
+                        <span className="text has-text-right">
+                          {record.score}
+                        </span>
                       </>
                     );
                   })

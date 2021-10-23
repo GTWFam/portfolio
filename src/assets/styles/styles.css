@@ -27,5 +27,9 @@
 
 .scoreboard span.text {
   display: inline-block;
-  width: 200px;
+  width: 150px;
+}
+
+.scoreboard hr {
+  width: 400px;
 }

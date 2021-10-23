@@ -16,7 +16,7 @@ const colors = [
 let player = {
     currentShape: null,
     pos: { x: 0, y: 0 },
-    name: 'Player',
+    name: 'Current Player',
     score: 0,
 }
 
@@ -206,7 +206,7 @@ function playerReset() {
         pausedDisabled = true;
         submit();
         arena.forEach(row => row.fill(0));
-        player.name = 'Player';
+        player.name = 'Current Player';
         player.score = 0;
         updateScore();
         document.getElementById('playerForm').style.display = 'block';
