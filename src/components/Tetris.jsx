@@ -6,13 +6,23 @@ class Tetris extends React.Component {
     super(props);
     this.state = {
       records: null,
+      error: "Loading...",
     };
     this.load();
   }
 
   load() {
     fetch(`/getTetrisRecords`, { method: "get", "no-cors": true })
-      .then((res) => res.json())
+      .then((res) => {
+        let data = res.json();
+        if (data.error) {
+          this.setState({
+            error: data.error,
+          });
+          return () => this.load();
+        }
+        return data;
+      })
       .then((json) => {
         this.setState({
           records: json,
@@ -25,7 +35,7 @@ class Tetris extends React.Component {
   }
 
   render() {
-    let { records } = this.state;
+    let { records, error } = this.state;
     return (
       <>
         <div className="container has-text-centered">
@@ -35,7 +45,7 @@ class Tetris extends React.Component {
           <div className="columns">
             <div className="column is-half is-flex is-justify-content-end">
               <div className="tetris-container">
-                <canvas id="tetris" width="300" height="500">
+                <canvas id="tetris" width="302" height="500">
                   Your browser does not support the HTML canvas tag.
                 </canvas>
                 <div id="tetrisPaused" className="hero is-success">
@@ -104,7 +114,9 @@ class Tetris extends React.Component {
                   );
                 })
               ) : (
-                <span>Loading...</span>
+                <p className="is-size-4 has-text-white">
+                  <span className="text">{error}</span>
+                </p>
               )}
             </div>
           </div>

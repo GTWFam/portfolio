@@ -5,14 +5,14 @@ let pausedDisabled = true;
 
 const allShapes = 'OISZLJT';
 const colors = [
-    null,
-    '#033E8C',
-    '#D97C2B',
-    '#E02955',
-    '#0FA697',
-    '#D4A39E',
-    '#D9A036',
-    '#188FD9'
+    '#1F1F1F',
+    '#F0F001',
+    '#01F0F1',
+    '#00F000',
+    '#F00100',
+    '#EFA000',
+    '#0101F0',
+    '#A000F1'
 ]
 
 let player = {
@@ -88,12 +88,12 @@ function createShape(type) {
 function drawShape(aShape, offset) {
     aShape.forEach((row, y) => {
         row.forEach((value, x) => {
-            if (value !== 0 && context !== null && canvas !== null) {
+            if ((aShape.length > 4 || value !== 0) && context !== null && canvas !== null) {
                 context.fillStyle = colors[value];
                 context.fillRect(
-                    x + offset.x,
+                    x + offset.x + 0.1,
                     y + offset.y,
-                    1, 1
+                    0.9, 0.9
                 );
             } else if (context === null || canvas === null) {
                 console.log('Tetris game didn\'t load');
@@ -104,7 +104,7 @@ function drawShape(aShape, offset) {
 
 function draw() {
     if (context !== null || canvas !== null) {
-        context.fillStyle = "#202020";
+        context.fillStyle = "#0F0F0F";
         context.fillRect(0, 0, canvas.width, canvas.height);
     } else {
         console.log('Tetris game didn\'t load');

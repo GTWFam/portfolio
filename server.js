@@ -55,17 +55,20 @@ app.use(express.static('build'));
 
 app.get('/getTetrisRecords', async (req, res) => {
     if (collection == null) {
-        return res.send('No connection to database!')
+        res.json({ error: 'No connection to database!' })
+        res.end()
     }
     try {
         let tetrisData = await collection.find({ "data": "tetris" }).toArray()
         let records = tetrisData[0].records
         console.log(records)
         res.json(records)
-        res.end()
     } catch (e) {
-        console.log('Unable to retrieve Tetris records: ' + e.message)
+        let errorMsg = 'Unable to retrieve Tetris records: ' + e.message
+        console.log(errorMsg)
+        res.json({ error: errorMsg })
     }
+    res.end()
 
 })
 
