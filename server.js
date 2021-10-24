@@ -8,14 +8,14 @@ let othelloBoard = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 2, 1, 0, 0, 0],
     [0, 0, 0, 1, 2, 0, 0, 0],
+    [0, 0, 0, 2, 1, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0]
 ]
 
-let player = '1'
+let player = null
 
 function getAIMove() {
     const othello = spawn('python', ['othelloAI.py', othelloBoard.toString(), player])
@@ -50,11 +50,8 @@ client.connect()
     })
 // .then(console.log)
 
-
-app.use(express.static('build'));
-
 app.get('/getTetrisRecords', async (req, res) => {
-    if (collection == null) {
+    if (collection === null) {
         res.json({ error: 'No connection to database!' })
         res.end()
     }
@@ -73,7 +70,7 @@ app.get('/getTetrisRecords', async (req, res) => {
 })
 
 app.post('/addTetrisRecord', async (req, res) => {
-    if (collection == null) {
+    if (collection === null) {
         return res.send('No connection to database!')
     }
 
@@ -92,8 +89,18 @@ app.post('/addTetrisRecord', async (req, res) => {
     res.end()
 })
 
+app.get('/getOthello', (req, res) => {
+    if (player === null) {
+        player = Math.floor(Math.random() * 2 + 1).toString()
+    }
+    res.json({ "board": othelloBoard, "player": parseInt(player) })
+    res.end()
+})
+
 app.post('/makeMove', (req, res) => {
     res.send(`Made Move! AI: ${getAIMove()}`)
 })
+
+app.use(express.static('build'));
 
 app.listen(process.env.PORT || 3000);

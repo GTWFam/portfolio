@@ -14,7 +14,7 @@ class Othello extends React.Component {
           </h2>
           <div className="columns">
             <div className="column is-flex is-justify-content-center">
-              <canvas id="othello" width="560" height="560"></canvas>
+              <canvas id="othello" width="563" height="563"></canvas>
             </div>
           </div>
         </div>
