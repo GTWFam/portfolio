@@ -31,6 +31,17 @@ class NavBar extends React.Component {
               <MemoryRouter>
                 <Link
                   smooth
+                  to="#finTracker"
+                  className="button is-info is-light is-large"
+                >
+                  FinTracker
+                </Link>
+              </MemoryRouter>
+            </div>
+            <div className="column">
+              <MemoryRouter>
+                <Link
+                  smooth
                   to="#tetrisGame"
                   className="button is-info is-light is-large"
                 >

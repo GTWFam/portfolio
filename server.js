@@ -71,7 +71,9 @@ app.get('/getTetrisRecords', async (req, res) => {
 
 app.post('/addTetrisRecord', async (req, res) => {
     if (collection === null) {
-        return res.send('No connection to database!')
+        res.json({ message: 'No connection to database!' })
+        res.end()
+        return;
     }
 
     let tetrisData = await collection.find({ "data": "tetris" }).toArray()
@@ -87,6 +89,31 @@ app.post('/addTetrisRecord', async (req, res) => {
         res.json({ message: 'Failed to add the tetris record' + e.message })
     }
     res.end()
+})
+
+app.get('/getFinData', async (req, res) => {
+    if (collection === null) {
+        res.json({ message: 'No connection to database!' })
+        res.end()
+        return;
+    }
+    try {
+        let finTrackData = await collection.find({ "data": "finTrack" }).toArray()
+        let data = finTrackData[0]
+        let users = data.users
+        let userData = users.filter(user => user.userID.toString() === req.query.userID)
+        let user = userData[0]
+        delete user['password'];
+        delete user['userID'];
+        console.log(user)
+        res.json(user)
+    } catch (e) {
+        let errorMsg = 'Unable to retrieve Tetris records: ' + e.message
+        console.log(errorMsg)
+        res.json({ error: errorMsg })
+    }
+    res.end()
+
 })
 
 app.get('/getOthello', (req, res) => {
