@@ -19,7 +19,6 @@ const monthArr = [
 class FinTracker extends React.Component {
   constructor(props) {
     super(props);
-    this.setMoney = this.setMoney.bind(this);
     this.state = {
       userID: "",
       username: "",
@@ -52,26 +51,19 @@ class FinTracker extends React.Component {
       });
   }
 
-  setMoney(income, outcome, net) {
-    this.setState({
-      income,
-      outcome,
-      net,
-    });
-  }
-
   render() {
     const { userID, currMonth, entries, income, outcome, net } = this.state;
     return (
       <>
         <div className="container">
-          <div className="columns">
+          <div className="columns is-vcentered">
             <div className="column">
               <h2 className="pb-4 is-size-2 has-text-black has-text-weight-semibold">
                 Financial Tracker Project
               </h2>
             </div>
-            <div className="column is-one-fifths">
+            <div className="column"></div>
+            <div className="column is-1">
               {userID === "" ? (
                 <>
                   <button className="button is-success is-outlined">
@@ -112,7 +104,6 @@ class FinTracker extends React.Component {
                     monthArr={monthArr}
                     currMonth={currMonth}
                     entries={entries}
-                    setMoney={this.setMoney}
                   />
                 </div>
               </div>

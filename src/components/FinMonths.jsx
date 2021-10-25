@@ -3,8 +3,7 @@ import FinMonthTab from "./FinMonthTab";
 
 class FinMonths extends React.Component {
   render() {
-    const { monthArr, currMonth, entries, setMoney } = this.props;
-    console.log(currMonth);
+    const { monthArr, currMonth, entries } = this.props;
     return (
       <>
         <div className="tabs is-boxed is-centered">
@@ -12,7 +11,10 @@ class FinMonths extends React.Component {
             {monthArr.map((month) => (
               <>
                 <li
-                  className={month == currMonth ? "is-active" : ""}
+                  className={
+                    (month == currMonth ? "is-active " : "") +
+                    "is-size-5 has-text-black"
+                  }
                   data-target={month + "-content"}
                 >
                   <a>{month}</a>
