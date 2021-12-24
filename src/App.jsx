@@ -28,6 +28,12 @@ class App extends React.Component {
             <p>Your browser does not support iframes.</p>
           </iframe>
         </section>
+        <span class="anchor" id="finTracker"></span>
+        <section className="section has-background-link-light">
+          <iframe src="https://gtwfin.herokuapp.com/" width="100%" height="750">
+            <p>Your browser does not support iframes.</p>
+          </iframe>
+        </section>
         <span class="anchor" id="tetrisGame"></span>
         <section className="section has-background-info-dark">
           <Tetris />
