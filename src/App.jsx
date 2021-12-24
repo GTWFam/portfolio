@@ -5,7 +5,6 @@ import Info from "./components/Info";
 import Tetris from "./components/Tetris";
 import NavBar from "./components/NavBar";
 import Othello from "./components/Othello";
-import FinTracker from "./components/FinTracker";
 
 class App extends React.Component {
   render() {
