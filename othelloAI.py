@@ -1,10 +1,8 @@
-import time
 import sys
 import numpy as np
 import copy
 import random
-
-from os import path
+import json
 
 heuristic_board = [
     [50,  -50,  10,  5,  5, 10, -50,  50],
@@ -65,6 +63,15 @@ def score(board, player):
         count += np.count_nonzero(board_row == player)
     return count
 
+def utility(board, player):
+    opponent = 3 - player
+    score_difference = score(board, player) - score(board, opponent)
+    if score_difference > 0:
+        return 5
+    elif score_difference < 0:
+        return 0
+    else:
+        return 1
 
 def update_board(board, move, player):
     """
@@ -105,7 +112,6 @@ def valid_moves(board, player):
     for tile in current_tiles:
         row = tile[0]
         col = tile[1]
-        # print(str(row) + str(col))
         # check up
         row_up = row - 1
         while row_up > 0 and board[row_up][col] == opponent:
@@ -424,7 +430,6 @@ def convert_string_board(board):
         else:
             temp.append(int(value))
             count += 1
-    # display_board(result_array)
     return result_array
 
 
@@ -441,4 +446,6 @@ if __name__ == "__main__":
         exit(0)
     best_move, best_score = minimax(
         the_board, the_player, tree, 1, -1000, 6)
-    print(best_move)
+    the_board = update_board(the_board, best_move, the_player)
+    the_board = flip(the_board, best_move, the_player)
+    print(json.dumps({"move": best_move, "board": the_board}))

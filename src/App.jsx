@@ -29,6 +29,9 @@ class App extends React.Component {
         </section>
         <span class="anchor" id="finTracker"></span>
         <section className="section has-background-link-light">
+          <h2 className="is-size-2 has-text-white has-text-weight-semibold pb-4">
+            Financial Tracker
+          </h2>
           <iframe src="https://gtwfin.herokuapp.com/" width="100%" height="750">
             <p>Your browser does not support iframes.</p>
           </iframe>
