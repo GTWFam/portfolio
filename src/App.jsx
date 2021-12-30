@@ -10,16 +10,16 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <span class="anchor" id="othelloGame"></span>
-        <section className="section has-background-primary-dark">
-          <Othello />
-        </section>
         <span class="anchor" id="about"></span>
         <section className="section has-background-white-ter">
           <Info />
         </section>
         <section className="section has-background-info p-6" id="nav">
           <NavBar />
+        </section>
+        <span class="anchor" id="othelloGame"></span>
+        <section className="section has-background-primary-dark">
+          <Othello />
         </section>
         <span class="anchor" id="oldWebsite"></span>
         <section className="section has-background-link-light">
