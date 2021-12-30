@@ -440,12 +440,18 @@ if __name__ == "__main__":
     string_board = sys.argv[1]
     the_board = convert_string_board(string_board)
     the_player = int(sys.argv[2])
-    tree = valid_moves(the_board, the_player)
-    if len(tree) == 0:
-        print("0 8")
-        exit(0)
-    best_move, best_score = minimax(
-        the_board, the_player, tree, 1, -1000, 6)
-    the_board = update_board(the_board, best_move, the_player)
-    the_board = flip(the_board, best_move, the_player)
-    print(json.dumps({"move": best_move, "board": the_board}))
+    if len(sys.argv) == 3:
+        tree = valid_moves(the_board, the_player)
+        if len(tree) == 0:
+            print(json.dumps({"move": "8 8", "board": the_board}))
+            exit(0)
+        best_move, best_score = minimax(
+            the_board, the_player, tree, 1, -1000, 6)
+        the_board = update_board(the_board, best_move, the_player)
+        the_board = flip(the_board, best_move, the_player)
+        print(json.dumps({"move": best_move, "board": the_board}))
+    elif len(sys.argv) == 4:
+        the_move = sys.argv[3]
+        the_board = update_board(the_board, the_move, the_player)
+        the_board = flip(the_board, the_move, the_player)
+        print(json.dumps({"board": the_board}))

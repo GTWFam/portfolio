@@ -17,6 +17,7 @@ let othelloBoard = [
 
 let player = null;
 let ai = null;
+let playerTurn = false;
 
 async function getAIMove() {
   if (player === null) return "No player found.";
@@ -53,7 +54,28 @@ async function getValidMoves() {
   });
 }
 
+async function makePlayerMove(move) {
+  if (player === null) return "No player found.";
+
+  const othello = spawn("python", [
+    "othelloAI.py",
+    othelloBoard.toString(),
+    player,
+    move,
+  ]);
+
+  for await (const data of othello.stdout) {
+    console.log(`New board is: ${data}`);
+    return data.toString();
+  }
+
+  othello.stderr.on("data", (data) => {
+    console.error(`Encountered an error in python code:\n${data}`);
+  });
+}
+
 const app = express();
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const uri =
@@ -146,14 +168,18 @@ app.get("/getFinData", async (req, res) => {
 
 app.get("/getOthello", (req, res) => {
   if (player === null) {
-    player = 2; // Math.floor(Math.random() * 2 + 1).toString();
+    player = Math.floor(Math.random() * 2 + 1).toString();
     ai = 3 - player;
+    if (player === "1") {
+      playerTurn = true;
+    }
   }
-  res.json({ board: othelloBoard, player: parseInt(player) });
+  res.json({ board: othelloBoard, player: parseInt(player), turn: playerTurn });
   res.end();
 });
 
 app.get("/AIMove", async (req, res) => {
+  playerTurn = true;
   let json = await getAIMove();
   json = json.trim();
   let data = JSON.parse(json);
@@ -162,11 +188,23 @@ app.get("/AIMove", async (req, res) => {
   res.end();
 });
 
-app.get("/validMOves", async (req, res) => {
+app.get("/validMoves", async (req, res) => {
   let json = await getValidMoves();
   json = json.trim();
   let data = JSON.parse(json);
   console.log(data);
+  res.json({ json: data });
+  res.end();
+});
+
+app.post("/playerMove", async (req, res) => {
+  playerTurn = false;
+  let the_move = req.body.theMove;
+  console.log(the_move);
+  let json = await makePlayerMove(the_move);
+  json = json.trim();
+  let data = JSON.parse(json);
+  othelloBoard = data.board;
   res.json({ json: data });
   res.end();
 });

@@ -10,6 +10,10 @@ class App extends React.Component {
   render() {
     return (
       <>
+        <span class="anchor" id="othelloGame"></span>
+        <section className="section has-background-primary-dark">
+          <Othello />
+        </section>
         <span class="anchor" id="about"></span>
         <section className="section has-background-white-ter">
           <Info />
@@ -39,10 +43,6 @@ class App extends React.Component {
         <span class="anchor" id="tetrisGame"></span>
         <section className="section has-background-info-dark">
           <Tetris />
-        </section>
-        <span class="anchor" id="othelloGame"></span>
-        <section className="section has-background-primary-dark">
-          <Othello />
         </section>
       </>
     );
