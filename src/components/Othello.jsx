@@ -1,5 +1,5 @@
 import React from "react";
-import { loadOthello } from "../assets/scripts/othelloGame";
+import { loadOthello, resetOthello } from "../assets/scripts/othelloGame";
 
 class Othello extends React.Component {
   componentDidMount() {
@@ -14,7 +14,27 @@ class Othello extends React.Component {
           </h2>
           <div className="columns">
             <div className="column is-flex is-justify-content-center">
+              <div className="buttons are-normal">
+                <button className="button is-info">Rules</button>
+                <button onClick={resetOthello} className="button is-info">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column is-flex is-justify-content-end">
+              <p className="has-text-white is-size-3">
+                <span id="w_player"></span>: <span id="w_score"></span>
+              </p>
+            </div>
+            <div className="column is-flex is-justify-content-center">
               <canvas id="othello" width="563" height="563"></canvas>
+            </div>
+            <div className="column is-flex is-justify-content-start">
+              <p className="has-text-black is-size-3">
+                <span id="b_player"></span>: <span id="b_score"></span>
+              </p>
             </div>
           </div>
         </div>

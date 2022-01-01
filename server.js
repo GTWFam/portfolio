@@ -178,6 +178,26 @@ app.get("/getOthello", (req, res) => {
   res.end();
 });
 
+app.get("/resetOthello", (req, res) => {
+  player = Math.floor(Math.random() * 2 + 1).toString();
+  ai = 3 - player;
+  if (player === "1") {
+    playerTurn = true;
+  }
+  othelloBoard = [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 2, 0, 0, 0],
+    [0, 0, 0, 2, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ];
+  res.json({ board: othelloBoard, player: parseInt(player), turn: playerTurn });
+  res.end();
+});
+
 app.get("/AIMove", async (req, res) => {
   playerTurn = true;
   let json = await getAIMove();

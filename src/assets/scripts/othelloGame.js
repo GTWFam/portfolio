@@ -136,8 +136,22 @@ async function clickListener(canvas, event) {
   console.log("Clicked on cell: " + row + " " + col);
 }
 
+function updateScore() {
+  w_score = board.reduce(
+    (prev, next, curr, arr) => prev + next.filter((x) => x == 1).length,
+    0
+  );
+  b_score = board.reduce(
+    (prev, next, curr, arr) => prev + next.filter((x) => x == 2).length,
+    0
+  );
+
+  document.getElementById("w_score").innerText = w_score;
+  document.getElementById("b_score").innerText = b_score;
+}
+
 async function game() {
-  console.log(board);
+  updateScore();
   if (playerTurn) {
     showMoves();
     canvas.addEventListener("click", (e) => clickListener(canvas, e), false);
@@ -156,6 +170,33 @@ async function startGame() {
   }
   console.log(playerTurn);
   game();
+}
+
+export async function resetOthello() {
+  await fetch("/resetOthello", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      board = data.board;
+      player = data.player;
+      playerTurn = data.turn;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+  drawShape(board, { x: 0, y: 0 });
+  document.getElementById("w_player").innerText = player == 1 ? "Player" : "AI";
+  document.getElementById("b_player").innerText = player == 2 ? "Player" : "AI";
+  updateScore();
+  try {
+    startGame();
+  } catch (e) {
+    console.log("Unable to start the game: ", e);
+  }
 }
 
 export async function loadOthello() {
@@ -182,7 +223,9 @@ export async function loadOthello() {
       console.error("Error:", error);
     });
   drawShape(board, { x: 0, y: 0 });
-  console.log("Player is: ", player);
+  document.getElementById("w_player").innerText = player == 1 ? "Player" : "AI";
+  document.getElementById("b_player").innerText = player == 2 ? "Player" : "AI";
+  updateScore();
   try {
     startGame();
   } catch (e) {
