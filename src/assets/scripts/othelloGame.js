@@ -3,6 +3,8 @@ let context = null;
 let board = null;
 let player = null;
 let playerTurn = null;
+let w_score = 0;
+let b_score = 0;
 const colors = ["#00947e", "#fdfdfd", "#0d0d0d"];
 
 let moves = [];
@@ -152,13 +154,28 @@ function updateScore() {
 
 async function game() {
   updateScore();
-  if (playerTurn) {
-    showMoves();
-    canvas.addEventListener("click", (e) => clickListener(canvas, e), false);
+  let empty = board.reduce(
+    (prev, next, curr, arr) => prev + next.filter((x) => x == 0).length,
+    0
+  );
+  if (empty == 0) {
+    if (w_score > b_score) {
+      document.getElementById("othelloMessage").innerText = "White Wins!";
+    } else if (w_score < b_score) {
+      document.getElementById("othelloMessage").innerText = "Black Wins!";
+    } else {
+      document.getElementById("othelloMessage").innerText = "It's a Tie!";
+    }
   } else {
-    aiMove();
+    if (playerTurn) {
+      document.getElementById("othelloMessage").innerText = "Your turn!";
+      showMoves();
+      canvas.addEventListener("click", (e) => clickListener(canvas, e), false);
+    } else {
+      document.getElementById("othelloMessage").innerText = "AI's turn!";
+      aiMove();
+    }
   }
-  sleep(5000);
 }
 
 async function startGame() {

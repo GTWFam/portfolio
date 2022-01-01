@@ -13,13 +13,17 @@ class Othello extends React.Component {
             Othello Project
           </h2>
           <div className="columns">
-            <div className="column is-flex is-justify-content-center">
-              <div className="buttons are-normal">
-                <button className="button is-info">Rules</button>
-                <button onClick={resetOthello} className="button is-info">
-                  Reset
-                </button>
-              </div>
+            <div className="column is-flex is-justify-content-center is-align-items-center">
+              <button className="button is-info">Rules</button>
+              <p
+                className="mx-5 is-size-3 is-uppercase is-bold has-text-info-dark"
+                id="othelloMessage"
+              >
+                Let's play Othello!
+              </p>
+              <button onClick={resetOthello} className="button is-info">
+                Reset
+              </button>
             </div>
           </div>
           <div className="columns">
