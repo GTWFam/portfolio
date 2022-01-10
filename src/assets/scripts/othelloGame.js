@@ -55,6 +55,7 @@ function drawShape(aShape, offset) {
 async function showMoves() {
   await fetch("/validMoves", {
     method: "GET",
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
     },
@@ -85,6 +86,7 @@ async function aiMove(update) {
   }
   await fetch("/AIMove", {
     method: "GET",
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
     },
@@ -108,7 +110,6 @@ async function playerMove(update) {
     canvas.addEventListener(
       "click",
       (e) => {
-        e.preventDefault();
         clickListener(e, update);
       },
       false
@@ -117,6 +118,7 @@ async function playerMove(update) {
 }
 
 async function clickListener(event, update) {
+  event.preventDefault();
   if (!playerTurn) {
     alert("Not your turn!");
     return "Not your turn!";
@@ -126,7 +128,6 @@ async function clickListener(event, update) {
     canvas.removeEventListener(
       "click",
       (e) => {
-        e.preventDefault();
         clickListener(e);
       },
       false
@@ -142,6 +143,7 @@ async function clickListener(event, update) {
   if (moves.includes(rcString)) {
     await fetch("/playerMove", {
       method: "POST",
+      mode: "no-cors",
       body: JSON.stringify({ theMove: rcString }),
       headers: {
         "Content-Type": "application/json",
@@ -238,6 +240,7 @@ function startGame() {
 export async function resetOthello() {
   await fetch("/resetOthello", {
     method: "GET",
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
     },
@@ -271,6 +274,7 @@ export async function loadOthello() {
   context.fillRect(0, 0, canvas.width, canvas.height);
   await fetch("/getOthello", {
     method: "GET",
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
     },
