@@ -55,7 +55,7 @@ function drawShape(aShape, offset) {
 async function showMoves() {
   await fetch("/validMoves", {
     method: "GET",
-    mode: "no-cors",
+    mode: "same-origin",
     headers: {
       "Content-Type": "application/json",
     },
@@ -86,7 +86,7 @@ async function aiMove(update) {
   }
   await fetch("/AIMove", {
     method: "GET",
-    mode: "no-cors",
+    mode: "same-origin",
     headers: {
       "Content-Type": "application/json",
     },
@@ -143,7 +143,7 @@ async function clickListener(event, update) {
   if (moves.includes(rcString)) {
     await fetch("/playerMove", {
       method: "POST",
-      mode: "no-cors",
+      mode: "same-origin",
       body: JSON.stringify({ theMove: rcString }),
       headers: {
         "Content-Type": "application/json",
@@ -240,7 +240,7 @@ function startGame() {
 export async function resetOthello() {
   await fetch("/resetOthello", {
     method: "GET",
-    mode: "no-cors",
+    mode: "same-origin",
     headers: {
       "Content-Type": "application/json",
     },
@@ -274,7 +274,7 @@ export async function loadOthello() {
   context.fillRect(0, 0, canvas.width, canvas.height);
   await fetch("/getOthello", {
     method: "GET",
-    mode: "no-cors",
+    mode: "same-origin",
     headers: {
       "Content-Type": "application/json",
     },
