@@ -9,7 +9,8 @@
   "scripts": {
     "clean": "rm dist/bundle.js",
     "build": "snowpack build",
-    "start": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
