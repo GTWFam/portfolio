@@ -45,7 +45,6 @@ async function getValidMoves() {
   ]);
 
   for await (const data of othello.stdout) {
-    console.log(`Move is: ${data}`);
     return data.toString();
   }
 
@@ -65,7 +64,6 @@ async function makePlayerMove(move) {
   ]);
 
   for await (const data of othello.stdout) {
-    console.log(`New board is: ${data}`);
     return data.toString();
   }
 
@@ -101,7 +99,6 @@ client
     collection = __collection;
     return "";
   });
-// .then(console.log)
 
 app.get("/getTetrisRecords", async (req, res) => {
   if (collection === null) {
@@ -169,10 +166,10 @@ app.get("/getFinData", async (req, res) => {
 app.get("/getOthello", (req, res) => {
   if (player === null) {
     player = Math.floor(Math.random() * 2 + 1).toString();
-    ai = 3 - player;
-    if (player === "1") {
-      playerTurn = true;
-    }
+    ai = (3 - player).toString();
+  }
+  if (player === "1") {
+    playerTurn = true;
   }
   res.json({ board: othelloBoard, player: parseInt(player), turn: playerTurn });
   res.end();
@@ -180,9 +177,11 @@ app.get("/getOthello", (req, res) => {
 
 app.get("/resetOthello", (req, res) => {
   player = Math.floor(Math.random() * 2 + 1).toString();
-  ai = 3 - player;
+  ai = (3 - player).toString();
   if (player === "1") {
     playerTurn = true;
+  } else {
+    playerTurn = false;
   }
   othelloBoard = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -199,6 +198,7 @@ app.get("/resetOthello", (req, res) => {
 });
 
 app.get("/AIMove", async (req, res) => {
+  console.log("AI Moved");
   playerTurn = true;
   let json = await getAIMove();
   json = json.trim();
@@ -209,18 +209,21 @@ app.get("/AIMove", async (req, res) => {
 });
 
 app.get("/validMoves", async (req, res) => {
+  if (player === null) {
+    console.log("No player");
+    return;
+  }
   let json = await getValidMoves();
   json = json.trim();
   let data = JSON.parse(json);
-  console.log(data);
   res.json({ json: data });
   res.end();
 });
 
 app.post("/playerMove", async (req, res) => {
+  console.log("Player Moved");
   playerTurn = false;
   let the_move = req.body.theMove;
-  console.log(the_move);
   let json = await makePlayerMove(the_move);
   json = json.trim();
   let data = JSON.parse(json);
