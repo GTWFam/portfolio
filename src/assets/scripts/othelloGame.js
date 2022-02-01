@@ -141,6 +141,7 @@ async function clickListener(event, update) {
   let row = Math.floor(y / 70);
   let rcString = row.toString() + " " + col.toString();
   if (moves.includes(rcString)) {
+    moves = [];
     await fetch("/playerMove", {
       method: "POST",
       mode: "cors",
@@ -173,8 +174,10 @@ async function clickListener(event, update) {
   }
 }
 
-function makeNextMove() {
-  requestAnimationFrame(game);
+async function makeNextMove() {
+  await sleep(3000).then(() => {
+    requestAnimationFrame(game);
+  });
 }
 
 function updateScore() {
@@ -230,11 +233,7 @@ function startGame() {
   if (player === null) {
     throw "No player found.";
   }
-  if (player === 1) {
-    game(playerMove);
-  } else {
-    game(aiMove);
-  }
+  game();
 }
 
 export async function resetOthello() {
