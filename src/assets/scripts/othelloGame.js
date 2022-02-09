@@ -7,7 +7,7 @@ let w_score = 0;
 let b_score = 0;
 const colors = ["#00947e", "#fdfdfd", "#0d0d0d"];
 
-let moves = [];
+let moves = null;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -64,14 +64,18 @@ async function showMoves() {
     .then((data) => {
       let json = data.json;
       moves = Object.keys(json);
-      let temp_board = board;
-      moves.forEach((move) => {
-        let split = move.split(" ");
-        let row = split[0];
-        let col = split[1];
-        temp_board[row][col] = 3;
-      });
-      drawShape(temp_board, { x: 0, y: 0 });
+      if (moves === []) {
+        moves = ["No Moves"];
+      } else {
+        let temp_board = board;
+        moves.forEach((move) => {
+          let split = move.split(" ");
+          let row = split[0];
+          let col = split[1];
+          temp_board[row][col] = 3;
+        });
+        drawShape(temp_board, { x: 0, y: 0 });
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -105,16 +109,8 @@ async function aiMove(update) {
     });
 }
 
-async function playerMove(update) {
-  await showMoves().then(() => {
-    canvas.addEventListener(
-      "click",
-      (e) => {
-        clickListener(e, update);
-      },
-      false
-    );
-  });
+function playerMove() {
+  showMoves();
 }
 
 async function clickListener(event, update) {
@@ -123,16 +119,14 @@ async function clickListener(event, update) {
     alert("Not your turn!");
     return "Not your turn!";
   }
-  if (moves.length === 0) {
+  if (moves === null) {
+    update();
+    return;
+  }
+  if (moves[0] === "No Moves") {
     playerTurn = false;
-    canvas.removeEventListener(
-      "click",
-      (e) => {
-        clickListener(e);
-      },
-      false
-    );
-    return update();
+    update();
+    return;
   }
   let rect = canvas.getBoundingClientRect();
   let x = event.clientX - rect.left;
@@ -141,7 +135,7 @@ async function clickListener(event, update) {
   let row = Math.floor(y / 70);
   let rcString = row.toString() + " " + col.toString();
   if (moves.includes(rcString)) {
-    moves = [];
+    moves = null;
     await fetch("/playerMove", {
       method: "POST",
       mode: "cors",
@@ -156,16 +150,10 @@ async function clickListener(event, update) {
         drawShape(board, { x: 0, y: 0 });
         playerTurn = false;
         console.log("Clicked on cell:", rcString);
-        canvas.removeEventListener(
-          "click",
-          (e) => {
-            e.preventDefault();
-            clickListener(e);
-          },
-          false
-        );
       })
-      .then(() => update())
+      .then(() => {
+        update();
+      })
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -175,7 +163,7 @@ async function clickListener(event, update) {
 }
 
 async function makeNextMove() {
-  await sleep(3000).then(() => {
+  await sleep(2000).then(() => {
     requestAnimationFrame(game);
   });
 }
@@ -222,7 +210,7 @@ function game() {
   }
   if (playerTurn) {
     document.getElementById("othelloMessage").innerText = "Your turn!";
-    playerMove(makeNextMove);
+    playerMove();
   } else {
     document.getElementById("othelloMessage").innerText = "AI's turn!";
     aiMove(makeNextMove);
@@ -295,6 +283,13 @@ export async function loadOthello() {
   sleep(5000);
   try {
     startGame();
+    canvas.addEventListener(
+      "click",
+      (e) => {
+        clickListener(e, makeNextMove);
+      },
+      false
+    );
   } catch (e) {
     console.log("Unable to start the game: ", e);
   }
