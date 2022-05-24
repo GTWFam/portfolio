@@ -17,16 +17,6 @@ class App extends React.Component {
         <section className="section has-background-info p-6" id="nav">
           <NavBar />
         </section>
-        <span class="anchor" id="oldWebsite"></span>
-        <section className="section has-background-link-light">
-          <iframe
-            src="https://gtwfam.github.io/my_portfolio/"
-            width="100%"
-            height="750"
-          >
-            <p>Your browser does not support iframes.</p>
-          </iframe>
-        </section>
         <span class="anchor" id="finTracker"></span>
         <section className="section has-background-link-light has-text-centered">
           <h2 className="is-size-2 has-text-black has-text-weight-semibold pb-4">
