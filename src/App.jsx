@@ -4,7 +4,6 @@ import React from "react";
 import Info from "./components/Info";
 import Tetris from "./components/Tetris";
 import NavBar from "./components/NavBar";
-import Othello from "./components/Othello";
 
 class App extends React.Component {
   render() {
@@ -27,8 +26,17 @@ class App extends React.Component {
           </iframe>
         </section>
         <span class="anchor" id="othelloGame"></span>
-        <section className="section has-background-primary-dark">
-          <Othello />
+        <section className="section has-background-primary-dark has-text-centered">
+          <h2 className="is-size-2 has-text-black has-text-weight-semibold pb-4">
+            Othello
+          </h2>
+          <iframe
+            src="https://ppham-othello.herokuapp.com/"
+            width="100%"
+            height="750"
+          >
+            <p>Your browser does not support iframes.</p>
+          </iframe>
         </section>
         <span class="anchor" id="tetrisGame"></span>
         <section className="section has-background-info-dark">
