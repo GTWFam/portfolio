@@ -16,7 +16,7 @@ class App extends React.Component {
       .then((data) => {
         console.log(data.GA_UA_CODE);
         ReactGA.initialize(data.GA_UA_CODE, {
-          cookieFlags: "SameSite=None; Secure",
+          gaOptions: { cookieFlags: "SameSite=None;Secure" },
         });
 
         ReactGA.pageview(window.location.pathname + window.location.search);
