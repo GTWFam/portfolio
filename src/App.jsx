@@ -13,8 +13,8 @@ class App extends React.Component {
       .then((data) => {
         const ga4react = new GA4React(data.GA_CODE);
         ga4react.initialize().then(
-          (ga4) => {
-            ga4.pageview(window.location.pathname + window.location.search);
+          (ga) => {
+            ga.pageview(window.location.pathname + window.location.search);
           },
           (err) => {
             console.error(err);
