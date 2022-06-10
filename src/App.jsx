@@ -5,12 +5,14 @@ import Info from "./components/Info";
 import Tetris from "./components/Tetris";
 import NavBar from "./components/NavBar";
 import ReactGA from "react-ga";
-require("dotenv").config();
 
 class App extends React.Component {
   componentDidMount() {
-    ReactGA.initialize(process.env.GA_UA_CODE);
-    ReactGA.pageview("/");
+    fetch(`/getGACode`, { method: "get", "no-cors": true }).then((res) => {
+      let json = res.json();
+      ReactGA.initialize(json.GA_UA_CODE);
+      ReactGA.pageview("/");
+    });
   }
 
   render() {

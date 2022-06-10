@@ -30,6 +30,11 @@ client
     return "";
   });
 
+app.get("/getGACode", (req, res) => {
+  res.json({ UA_GA_CODE: process.env.UA_GA_CODE });
+  res.end();
+});
+
 app.get("/getTetrisRecords", async (req, res) => {
   if (collection === null) {
     res.json({ error: "No connection to database!" });
