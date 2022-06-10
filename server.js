@@ -31,7 +31,7 @@ client
   });
 
 app.get("/getGACode", (req, res) => {
-  res.json({ UA_GA_CODE: process.env.UA_GA_CODE });
+  res.json({ GA_UA_CODE: process.env.GA_UA_CODE });
   res.end();
 });
 
