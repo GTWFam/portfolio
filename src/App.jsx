@@ -8,7 +8,7 @@ import GA4React from "ga-4-react";
 
 class App extends React.Component {
   componentDidMount() {
-    fetch(`/getTetrisRecords`, { method: "get", "no-cors": true })
+    fetch(`/getGACode`, { method: "get", "no-cors": true })
       .then((res) => res.json())
       .then((data) => {
         const ga4react = new GA4React(data.GA_CODE);
