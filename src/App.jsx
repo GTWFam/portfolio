@@ -8,15 +8,19 @@ import GA4React from "ga-4-react";
 
 class App extends React.Component {
   componentDidMount() {
-    const ga4react = new GA4React("G-VLFS8600F3");
-    ga4react.initialize().then(
-      (ga4) => {
-        ga4.pageview(window.location.pathname + window.location.search);
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+    fetch(`/getTetrisRecords`, { method: "get", "no-cors": true })
+      .then((res) => res.json())
+      .then((data) => {
+        const ga4react = new GA4React(data.GA_CODE);
+        ga4react.initialize().then(
+          (ga4) => {
+            ga4.pageview(window.location.pathname + window.location.search);
+          },
+          (err) => {
+            console.error(err);
+          }
+        );
+      });
   }
 
   render() {
