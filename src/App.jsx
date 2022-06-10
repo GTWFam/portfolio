@@ -8,11 +8,16 @@ import ReactGA from "react-ga";
 
 class App extends React.Component {
   componentDidMount() {
-    fetch(`/getGACode`, { method: "get", "no-cors": true }).then((res) => {
-      let json = res.json();
-      ReactGA.initialize(json.GA_UA_CODE);
-      ReactGA.pageview("/");
-    });
+    fetch(`/getGACode`, { method: "get", "no-cors": true })
+      .then((res) => {
+        let json = res.json();
+        return json;
+      })
+      .then((data) => {
+        console.log(data.GA_UA_CODE);
+        ReactGA.initialize(data.GA_UA_CODE);
+        ReactGA.pageview("/");
+      });
   }
 
   render() {
