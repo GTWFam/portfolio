@@ -4,8 +4,15 @@ import React from "react";
 import Info from "./components/Info";
 import Tetris from "./components/Tetris";
 import NavBar from "./components/NavBar";
+import ReactGA from "react-ga";
 
 class App extends React.Component {
+  componentDidMount() {
+    require("dotenv").config();
+    ReactGA.initialize(process.env.GA_UA_CODE);
+    ReactGA.pageview("/");
+  }
+
   render() {
     return (
       <>
