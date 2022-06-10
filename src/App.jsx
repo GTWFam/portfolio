@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import ReactGA from "react-ga";
 
 class App extends React.Component {
-  componentDidMount() {
+  render() {
     fetch(`/getGACode`, { method: "get", "no-cors": true })
       .then((res) => {
         let json = res.json();
@@ -21,9 +21,6 @@ class App extends React.Component {
 
         ReactGA.pageview(window.location.pathname + window.location.search);
       });
-  }
-
-  render() {
     return (
       <>
         <span class="anchor" id="about"></span>
