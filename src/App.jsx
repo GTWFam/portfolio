@@ -4,23 +4,22 @@ import React from "react";
 import Info from "./components/Info";
 import Tetris from "./components/Tetris";
 import NavBar from "./components/NavBar";
-import ReactGA from "react-ga";
+import GA4React from "ga-4-react";
 
 class App extends React.Component {
-  render() {
-    fetch(`/getGACode`, { method: "get", "no-cors": true })
-      .then((res) => {
-        let json = res.json();
-        return json;
-      })
-      .then((data) => {
-        console.log(data.GA_UA_CODE);
-        ReactGA.initialize(data.GA_UA_CODE, {
-          gaOptions: { cookieFlags: "SameSite=None;Secure" },
-        });
+  componentDidMount() {
+    const ga4react = new GA4React("G-VLFS8600F3");
+    ga4react.initialize().then(
+      (ga4) => {
+        ga4.pageview(window.location.pathname + window.location.search);
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
+  }
 
-        ReactGA.pageview(window.location.pathname + window.location.search);
-      });
+  render() {
     return (
       <>
         <span class="anchor" id="about"></span>

@@ -17,4 +17,5 @@ Thumbs.db
 
 .env
 /build
+/dist
 package-lock.json
